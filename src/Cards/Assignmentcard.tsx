@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineCheckCircle, AiOutlineShrink } from "react-icons/all";
 import { DateTime } from "luxon";
 import { string } from "yup";
 // import { useForm } from "./useForm";
 import AssignmentPopup from "./AssignmentPopup";
-import { getAssignments } from "../api";
+import { getAssignments, submitAssignments } from "../api";
 import { Assignment } from "../models/assignment";
 
 type AssignmentCardProps = { assignment: Assignment };
@@ -36,11 +36,11 @@ const AssignmentCard: FC<AssignmentCardProps> = ({ assignment }) => {
     console.log("popUp removed");
   };
 
-  const url = (event) => {
+  const url = (event: any) => {
     setSubmissionLink(event.target.value);
   };
 
-  const assignmentSubmit = (event) => {
+  const assignmentSubmit = (event: any) => {
     event.preventDefault();
     const urlValidator = string()
       .required("Submission Link Could not be Empty")
@@ -49,11 +49,11 @@ const AssignmentCard: FC<AssignmentCardProps> = ({ assignment }) => {
       urlValidator.validateSync(submissionLink);
       setSubmissionLink("");
       hide();
-      getAssignments(assignment, submissionLink);
+      submitAssignments(assignment, submissionLink);
       console.log(submissionLink);
     } catch (error) {
       setUrlError(true);
-      setUrlValid(error.message);
+      //   setUrlValid(error.message);
       return;
     }
   };
