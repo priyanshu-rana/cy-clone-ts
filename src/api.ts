@@ -24,14 +24,17 @@ export const getLectures = async () => {
 
 export const getAssignments = async () => {
   const responsePromise = await axios.get<Assignment[]>(
-    `https://app.codeyogi.io/batches/1/assignments`,
+    `https://api.codeyogi.io/batches/1/assignments`,
     { withCredentials: true }
   );
   const response = responsePromise.data;
   return response;
 };
 
-export const submitAssignments = async (assignment, submissionLink) => {
+export const submitAssignments = async (
+  assignment: any,
+  submissionLink: any
+) => {
   const responsePromise = await axios.put(
     `https://api.codeyogi.io/assignment/${assignment.id}/submit`,
     { submissionLink },

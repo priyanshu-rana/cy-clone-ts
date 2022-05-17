@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./MainLayout";
 import LecturePage from "./Pages/LecturePage";
 import NotfoundPage from "./Pages/NotfoundPage";
+import AssignmentPage from "./Pages/AssignmentPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<MainLayout />}>
           <Route path="students" element={<StudentPage />} />
           <Route path="lecture" element={<LecturePage />} />
+          <Route path="assignment" element={<AssignmentPage />} />
         </Route>
         <Route path="*" element={<NotfoundPage />} />
       </Routes>
